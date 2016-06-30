@@ -13,6 +13,7 @@
 #include<iomanip>
 #include<fstream>
 #include<algorithm>
+#include <math.h>
 //#include<TFitterMinuit.h>
 //#include<TMinuit.h>
 //#include<TROOT.h>
