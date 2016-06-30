@@ -1,7 +1,7 @@
 
-#define _CRT_SECURE_NO_WARNINGS
+//#define _CRT_SECURE_NO_WARNINGS
 
-#define R__EXTERN       R__DllImport extern
+//#define R__EXTERN       R__DllImport extern
 
 #include<TString.h>
 #include<TRandom3.h>
@@ -31,7 +31,7 @@ static int *nexp = &nExperiment[0];
 double initx = 0.0001;
 double xlower = -4.;
 int nx = 200, ny = 200;
-int const loopx = 5, loopy = 5;
+int const loopx = 10, loopy = 10;
 
 
 

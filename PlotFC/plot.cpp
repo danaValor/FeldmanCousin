@@ -1,9 +1,8 @@
 
 #define _CRT_SECURE_NO_WARNINGS
 
-#define R__EXTERN       R__DllImport extern
 
-#include<TString.h>
+//#include<TString.h>
 #include<TRandom3.h>
 #include<TMinuit.h>
 #include <TH2D.h>
@@ -82,7 +81,7 @@ double Chi(double x, double y) //binNumber = 0.. 4
 	for (int i = 0; i < bin; i++) {
 		chiInit += (nexp[i] - background - Mu(x, y, i)) *
 			(nexp[i] - background - Mu(x, y, i)) / (background + Mu(x, y, i));
-
+	return chiInit;
 	}
 
 }
@@ -232,7 +231,6 @@ int main()
 			sprintf(str, "Chidata/x_%dy_%d", m, n);
 			f1.open(str);
 			f1 >> chic1;
-			chiCritical[loopx][loopy] = chic1;
 			f1.close();
 
 		}
