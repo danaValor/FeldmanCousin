@@ -14,6 +14,7 @@
 #include<fstream>
 #include<algorithm>
 #include <math.h>
+#include <stdio.h>
 //#include<TFitterMinuit.h>
 //#include<TMinuit.h>
 //#include<TROOT.h>
