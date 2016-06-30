@@ -1,7 +1,5 @@
 
-//#define _CRT_SECURE_NO_WARNINGS
-
-//#define R__EXTERN       R__DllImport extern
+#define _CRT_SECURE_NO_WARNINGS
 
 #include<TString.h>
 #include<TRandom3.h>
