@@ -147,14 +147,13 @@ double FindMinimum(double xI, double yI)
 	minimizer1.SetFCN(MinuitFunction);
 	minimizer1.DefineParameter(0, "xx2", xI, 0.01, 0, 1);
 	minimizer1.DefineParameter(1, "yy2", yI, 1, 0, 1000);
-	minimizer1.mnexcm("MIGRAD", 0, 0, flag);
 
 	minimizer1.SetErrorDef(1);
 
-	minimizer1.SetMaxIterations(500);
+	minimizer1.SetMaxIterations(1000);
 	int err1 = minimizer1.Migrad();
 	if (err1 != 0) {
-		return err1;
+		return 10000;
 	}
 
 	double xx21, mu1err1;
