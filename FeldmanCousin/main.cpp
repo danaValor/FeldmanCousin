@@ -298,8 +298,6 @@ int main(int argc, char *argv[])
 //	DrawContour(chiCritical);
 
 
-
-	getchar();
 	
 
 
