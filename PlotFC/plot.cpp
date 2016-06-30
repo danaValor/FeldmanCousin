@@ -81,9 +81,9 @@ double Chi(double x, double y) //binNumber = 0.. 4
 	for (int i = 0; i < bin; i++) {
 		chiInit += (nexp[i] - background - Mu(x, y, i)) *
 			(nexp[i] - background - Mu(x, y, i)) / (background + Mu(x, y, i));
-	return chiInit;
-	}
 
+	}
+	return chiInit;
 }
 
 
@@ -231,6 +231,7 @@ int main()
 			sprintf(str, "Chidata/x_%dy_%d", m, n);
 			f1.open(str);
 			f1 >> chic1;
+			chiCritical[m][n] = chic1;
 			f1.close();
 
 		}
