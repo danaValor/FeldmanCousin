@@ -33,7 +33,7 @@ static int *nexp = &nExperiment[0];
 double initx = 0.0001;
 double xlower = -4.;
 int nx = 200, ny = 200;
-int const loopx = 5, loopy = 5;
+int const loopx = 10, loopy = 10;
 
 double Simpson(int n, double E1, double E2, double y) {//a is lower bound, b is upper bound
 
