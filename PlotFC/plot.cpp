@@ -30,7 +30,7 @@ static int *nexp = &nExperiment[0];
 double initx = 0.0001;
 double xlower = -4.;
 int nx = 200, ny = 200;
-int const loopx = 5, loopy = 5;
+int const loopx = 10, loopy = 10;
 
 
 
@@ -233,7 +233,17 @@ int main()
 
 	ifstream f1;
 	char str[100];
-	double y = 10.;
+	for (int m = 0; m < loopx; m++) {
+		for (int n = 0; n < loopy; n++) {
+			sprintf(str, "Chidata/x_%dy_%d", m, n);
+			f1.open(str);
+
+
+		}
+
+
+
+	}
 	sprintf(str, "Chidata/x_%.4fy_%.4f", y);
 
 	f1.open(str);
@@ -241,6 +251,8 @@ int main()
 	double a;
 	f1 >> a;
 
+
+	f1.close();
 
 	double xTrue = 0.006;
 	double yTrue = 40;

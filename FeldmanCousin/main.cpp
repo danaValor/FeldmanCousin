@@ -22,7 +22,8 @@ using namespace std;
 TRandom3 rnd(0);
 int const bin = 5;
 int const background = 100;
-int const Nn = 1000;
+int const maxNn = 10000;
+int Nn = 1000;
 double Ebins[] = { 10, 20, 30, 40, 50, 60 };
 double L1 = 0.6, L2 = 1;
 static int nExperiment[bin];
@@ -172,7 +173,7 @@ double FindMinimum(double xI, double yI)
 
 double ChiCritical(double x, double y) {
 	double chiCritical[loopx][loopy] = { 0 };
-	double deltaChi[Nn] = { 0 };
+	double deltaChi[maxNn] = { 0 };
 
 	double mu[bin] = { 0 };
 
@@ -227,13 +228,14 @@ int main(int argc, char *argv[])
 {
 
 	int i, j, n;
-
+	
 //	printf("%s", argv[0]);
 	sscanf(argv[1], "%d", &i);
 	sscanf(argv[2], "%d", &j);
 	sscanf(argv[3], "%d", &n);
 //	printf("%d %d %d", i, j, n);
 
+	Nn = n;
 
 	double x0 = initx, y0 = 1;
 
@@ -242,7 +244,7 @@ int main(int argc, char *argv[])
 	double hx = (0 - logx0) / (loopx - 1);
 	double hy = (3 - logy0) / (loopy - 1);
 	double chiCritical[loopx][loopy] = { 0 };
-	double deltaChi[Nn] = { 0 };
+	
 
 
 	//double d = atof(argv[2]);
