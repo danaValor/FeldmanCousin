@@ -33,6 +33,25 @@ double xlower = -4.;
 int nx = 200, ny = 200;
 int const loopx = 5, loopy = 5;
 
+double Simpson(int n, double E1, double E2, double y) {//a is lower bound, b is upper bound
+
+	double h = (E2 - E1) / n;
+	double e = E1, sum0 = 0, sum = 0;
+	for (int i = 0; i < n; i++) {
+		double r = (L2 - L1 - 1 / (2 * 1.27 * y) * e * (sin(2 * 1.27 * y * L2 / e) -
+			sin(2 * 1.27 * y * L1 / e))) / 2;
+		if (i == 0 || i == n - 1) sum0 = r * h / 3;
+		else {
+			if (i % 2 == 1) sum0 = r * 2 * h / 3;
+			else sum0 = r * 4 * h / 3;
+		}
+		sum += sum0;
+		e += h;
+	};
+
+
+	return sum;
+};
 
 
 double Mu(double x, double y, int binNumber)
@@ -41,28 +60,8 @@ double Mu(double x, double y, int binNumber)
 	double E1 = Ebins[binNumber];
 
 
-	auto Simpson = [&](int n) {//a is lower bound, b is upper bound
-
-		double h = (E2 - E1) / n;
-		double e = E1, sum0 = 0, sum = 0;
-		for (int i = 0; i < n; i++)
-		{
-			double r = (L2 - L1 - 1 / (2 * 1.27 * y) * e * (sin(2 * 1.27 * y * L2 / e) -
-				sin(2 * 1.27 * y * L1 / e))) / 2;
-			if (i == 0 || i == n - 1) sum0 = r * h / 3;
-			else {
-				if (i % 2 == 1) sum0 = r * 2 * h / 3;
-				else sum0 = r * 4 * h / 3;
-			}
-			sum += sum0;
-			e += h;
-		};
-
-
-		return sum;
-	};
 	int const N = 3000;
-	double muNumber = x * Simpson(N) * 10000 / (L2 - L1) / (E2 - E1);// n = 1000, which is the number of integration bins
+	double muNumber = x * Simpson(N, E1, E2, y) * 10000 / (L2 - L1) / (E2 - E1);// n = 1000, which is the number of integration bins
 
 	return muNumber;
 }
