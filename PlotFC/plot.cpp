@@ -206,12 +206,12 @@ void DrawContour(double(&ChiC)[loopx][loopy]) {
 			hist.SetBinContent(xi + 1, yi + 1, difference);
 		}
 	}
-	double levels[] = { -10,0 };
-	hist.SetContour(2, levels);
+	//double levels[] = { -10,0 };
+	//hist.SetContour(2, levels);
 	//cout << "try" << endl;
-	//hist.GetZaxis()->SetRangeUser(-4.61,0);
-	hist.Draw("SAME CONTZ");
-	//hist.Draw("colz");
+	hist.GetZaxis()->SetRangeUser(-4.61,0);
+	//hist.Draw("SAME CONTZ");
+	hist.Draw("colz");
 	cvs.Print("ChiContourCOLZ.png");
 
 
