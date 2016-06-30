@@ -193,7 +193,7 @@ double ChiCritical(double x, double y) {
 		deltaChi[p] = Chi(x, y) - chiMin;
 		if (deltaChi[p] < 0) {
 			p = p - 1;
-			cout << "find minimum of chi-square again";
+			cout << "find minimum of chi-square again\n";
 		}
 
 	}
