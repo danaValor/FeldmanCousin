@@ -147,13 +147,14 @@ double FindMinimum(double xI, double yI)
 	minimizer1.SetFCN(MinuitFunction);
 	minimizer1.DefineParameter(0, "xx2", xI, 0.01, 0, 1);
 	minimizer1.DefineParameter(1, "yy2", yI, 1, 0, 1000);
+	minimizer1.mnexcm("MIGRAD", 0, 0, flag);
 
 	minimizer1.SetErrorDef(1);
 
-	minimizer1.SetMaxIterations(1000);
+	minimizer1.SetMaxIterations(500);
 	int err1 = minimizer1.Migrad();
 	if (err1 != 0) {
-		return 10000;
+		return err1;
 	}
 
 	double xx21, mu1err1;
@@ -176,6 +177,7 @@ double ChiCritical(double x, double y) {
 
 	double mu[bin] = { 0 };
 
+	//nExperiment[bin] = { 0 };
 
 	int cut = int(ceil(0.9 * Nn));
 
@@ -188,16 +190,18 @@ double ChiCritical(double x, double y) {
 
 		}
 		double chiMin = FindMinimum(x, y);
+		//cout << chiMin << endl;
 		deltaChi[p] = Chi(x, y) - chiMin;
 		if (deltaChi[p] < 0) {
 			p = p - 1;
-			cout << "find minimum of chi-square again\n";
+			cout << "find minimum of chi-square again";
 		}
 
 	}
 
 	sort(deltaChi, deltaChi + Nn);
 	double chiCri = deltaChi[cut];
+	//cout << chiCri << endl;
 	return chiCri;
 
 }
@@ -242,6 +246,8 @@ int main(int argc, char *argv[])
 	double chiCritical[loopx][loopy] = { 0 };
 	
 
+
+	//double d = atof(argv[2]);
 	logx0 += i * hx;
 	logy0 += j * hy;
 	x0 = exp(log(10)*logx0);
@@ -283,7 +289,17 @@ int main(int argc, char *argv[])
 
 
 
+	//final test
+	
 
+
+//	DrawDeltaChiC(chiCritical);
+//	DrawInter(chiCritical);
+//	DrawContour(chiCritical);
+
+
+
+	getchar();
 	
 
 

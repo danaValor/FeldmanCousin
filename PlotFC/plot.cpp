@@ -13,10 +13,6 @@
 #include<iomanip>
 #include<fstream>
 #include<algorithm>
-//#include<TFitterMinuit.h>
-//#include<TMinuit.h>
-//#include<TROOT.h>
-
 using namespace std;
 
 TRandom3 rnd(0);
@@ -67,7 +63,6 @@ double Mu(double x, double y, int binNumber)
 }
 
 
-
 int Ngenerated(double muIn)
 {
 
@@ -81,8 +76,6 @@ int Ngenerated(double muIn)
 }
 
 
-
-
 double Chi(double x, double y) //binNumber = 0.. 4
 {
 	double chiInit = 0;
@@ -93,6 +86,7 @@ double Chi(double x, double y) //binNumber = 0.. 4
 	}
 
 }
+
 
 void DrawDeltaChiC(double(&ChiC)[loopx][loopy]) 
 {
@@ -155,6 +149,7 @@ double Interpolate(double(&ChiC)[loopx][loopy], double x, double y) {
 
 }
 
+
 void DrawInter(double(&ChiC)[loopx][loopy]) {
 
 	TCanvas cvs;
@@ -186,8 +181,6 @@ void DrawInter(double(&ChiC)[loopx][loopy]) {
 	cvs.Print("ChiCInterpolateCOLZ.png");
 
 }
-
-
 
 
 void DrawContour(double(&ChiC)[loopx][loopy]) {
@@ -230,29 +223,22 @@ void DrawContour(double(&ChiC)[loopx][loopy]) {
 
 int main()
 {
-
+	double chiCritical[loopx][loopy] = {0};
 	ifstream f1;
 	char str[100];
+	double chic1;
 	for (int m = 0; m < loopx; m++) {
 		for (int n = 0; n < loopy; n++) {
 			sprintf(str, "Chidata/x_%dy_%d", m, n);
 			f1.open(str);
-
+			f1 >> chic1;
+			chiCritical[loopx][loopy] = chic1;
+			f1.close();
 
 		}
 
-
-
 	}
-	sprintf(str, "Chidata/x_%.4fy_%.4f", y);
 
-	f1.open(str);
-	
-	double a;
-	f1 >> a;
-
-
-	f1.close();
 
 	double xTrue = 0.006;
 	double yTrue = 40;
@@ -268,7 +254,9 @@ int main()
 		//nExperiment[i] = 100;
 	}
 
-
+	DrawDeltaChiC(chiCritical);
+	DrawInter(chiCritical);
+	DrawContour(chiCritical);
 
 
 	R__EXTERN TStyle  *gStyle;
