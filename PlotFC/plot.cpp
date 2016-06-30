@@ -208,9 +208,10 @@ void DrawContour(double(&ChiC)[loopx][loopy]) {
 	}
 	//double levels[] = { -10,0 };
 	//hist.SetContour(2, levels);
-	//cout << "try" << endl;
+	cout << "try" << endl;
 	hist.GetZaxis()->SetRangeUser(-4.61,0);
 	//hist.Draw("SAME CONTZ");
+
 	hist.Draw("colz");
 	cvs.Print("ChiContourCOLZ.png");
 
