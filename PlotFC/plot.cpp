@@ -229,8 +229,12 @@ int main()
 	double chic1;
 	for (int m = 0; m < loopx; m++) {
 		for (int n = 0; n < loopy; n++) {
-			sprintf(str, "Chidata/x_%dy_%d", m, n);
+			sprintf(str, "../FeldmanCousin/data/x_%d_y_%d", m, n);
 			f1.open(str);
+			if(!f1) {
+                		cout << "Can not open " << str << "!" << endl;
+                		exit(1);
+            		}
 			f1 >> chic1;
 			chiCritical[loopx][loopy] = chic1;
 			f1.close();
